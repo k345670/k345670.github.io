@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>first - cykBlog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="路由基础1.路由链接123&amp;lt;router-link to=&amp;quot;/home&amp;quot;&amp;gt;首页&amp;lt;/router-link&amp;gt;&amp;lt;router-link to=&amp;quot,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="cykBlog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/timg.jpg"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">cykBlog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="https://k345670.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">first</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">first</h1>
+        <div class="stuff">
+            <span>三月 19, 2019</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="路由基础"><a href="#路由基础" class="headerlink" title="路由基础"></a>路由基础</h1><h5 id="1-路由链接"><a href="#1-路由链接" class="headerlink" title="1.路由链接"></a>1.路由链接</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link to=&quot;/home&quot;&gt;首页&lt;/router-link&gt;</span><br><span class="line">&lt;router-link to=&quot;/discover&quot;&gt;发现&lt;/router-link&gt;</span><br><span class="line">&lt;router-link to=&quot;/setting&quot;&gt;设置&lt;/router-link&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;!-- 装载路由切换的组件的容器 --&gt;
+&lt;router-view/&gt;
+
+
+  // 路由管理页面的配置项
+  const routes = [
+    {
+      path: &apos;/home&apos;,
+      component: Home
+    },
+    {
+      path: &apos;/discover&apos;,
+      component: Discover
+    },
+    {
+      path: &apos;/setting&apos;,
+      component: Setting
+    }
+  ];
+</code></pre><h5 id="2-动态路由"><a href="#2-动态路由" class="headerlink" title="2. 动态路由"></a>2. 动态路由</h5><pre><code>1. 使用query方法将数据拼在url上
+特点：没有query值也可以进去
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;li&gt;</span><br><span class="line">  &lt;router-link to=&quot;/detail?id=1&quot;&gt;大黄蜂&lt;/router-link&gt;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>2. 在路由配置时设置
+特点：必须完全匹配才能访问
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: &apos;/detail/:id&apos;,</span><br><span class="line">    component: Detail</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>3. 获取动态路由参数
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    watch: &#123;</span><br><span class="line">    &lt;!--如果动态路由执行时，对组件进行了复用，组件不会重新创建--&gt;</span><br><span class="line">    &lt;!--为了获得动态路由的参数，需要对$route进行监听--&gt;</span><br><span class="line">    &lt;!--query方式获取路由参数--&gt;</span><br><span class="line">    &apos;$route.query.id&apos;: &#123;</span><br><span class="line">        handler(newVal, oldVal)&#123;</span><br><span class="line">            console.log(&apos;query.id: &apos;, newVal);</span><br><span class="line">            //根据新值，向后台请求数据</span><br><span class="line">        &#125;,</span><br><span class="line">        immediate: true </span><br><span class="line">    &#125;</span><br><span class="line">    &lt;!--第二种方式--&gt;</span><br><span class="line">    &apos;$route.params.id&apos;: &#123;</span><br><span class="line">        handler(newVal, oldVal)&#123;</span><br><span class="line">            console.log(newVal);</span><br><span class="line">            //根据新值，向后台请求数据</span><br><span class="line">        &#125;,</span><br><span class="line">        immediate: true </span><br><span class="line">    &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<pre><code>4.路由嵌套使用
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">const routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &apos;/home&apos;,</span><br><span class="line">    component: Home,</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">        path: &apos;location&apos;,</span><br><span class="line">        component: Location</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        path: &apos;search&apos;,</span><br><span class="line">        component: Search</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        path: &apos;detail/:name/:id&apos;,</span><br><span class="line">        component: Detail</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &apos;/discover&apos;,</span><br><span class="line">    component: Discover</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &apos;/setting&apos;,</span><br><span class="line">    component: Setting</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;!--执行路由的返回--&gt;
+this.$router.back();
+</code></pre><h6 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty()"></a>Object.defineProperty()</h6><pre><code>1. 定义：
+方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。
+
+2.参数
+Object.defineProperty(obj(要在其上定义属性的对象。), prop(要定义或修改的属性的名称。), descriptor(将被定义或修改的属性描述符。))
+
+3.返回值
+被传递给函数的对象
+</code></pre><h5 id="虚拟dom"><a href="#虚拟dom" class="headerlink" title="虚拟dom"></a>虚拟dom</h5><pre><code>相比于频繁的手动去操作dom而带来性能问题，vdom很好的将dom做了一层映射关系，进而将在我们本需要直接进行dom的一系列
+操作，映射到了操作vdom，而vdom上定义了关于真实dom的一些关键的信息，vdom完全是用js去实现，和宿主浏览器没有任何联系
+，此外得益于js的执行速度，将原本需要在真实dom进行的创建节点,删除节点,添加节点等一系列复杂的dom操作全部放到vdom中进行，
+这样就通过操作vdom来提高直接操作的dom的效率和性能。
+</code></pre><h5 id="编程式导航"><a href="#编程式导航" class="headerlink" title="编程式导航"></a>编程式导航</h5><pre><code>1. router.push()
+    点击 &lt;router-link :to=&quot;...&quot;&gt; 等同于调用 router.push(...)
+    router.push({ name: &apos;user&apos;, params: { userId }}) // -&gt; /user/123
+
+2.router.replace()
+    router.replace(location, onComplete?, onAbort?)
+    跟 router.push 很像，唯一的不同就是，它不会向 history
+    添加新记录，而是跟它的方法名一样 —— 替换掉当前的 history 记录。
+
+3. router.go()
+    router.go(n)
+    router.go(1) 等价于 router.forward()
+    router.go(-1) 等价于 router.back()
+    这个方法的参数是一个整数，意思是在 history 记录中向前或者后退多少步.
+</code></pre><h5 id="命名视图"><a href="#命名视图" class="headerlink" title="命名视图"></a>命名视图</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 命名路由</span><br><span class="line">    const router = new VueRouter(&#123;</span><br><span class="line">      routes: [</span><br><span class="line">        &#123;</span><br><span class="line">          path: &apos;/user/:userId&apos;,</span><br><span class="line">          name: &apos;user&apos;,</span><br><span class="line">          component: User</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    &lt;router-link :to=&quot;&#123; name: &apos;user&apos;, params: &#123; userId: 123 &#125;&#125;&quot;&gt;User&lt;/router-link&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">2. 命名视图</span><br><span class="line">    &lt;div class=&quot;wrap&quot;&gt;</span><br><span class="line">    &lt;router-view class=&quot;nav&quot; name=&quot;nav&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;router-view class=&quot;page&quot;/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    routes: [</span><br><span class="line">        &#123;</span><br><span class="line">        path: &apos;/guide&apos;,</span><br><span class="line">        components: &#123;</span><br><span class="line">            nav: GuideNav,</span><br><span class="line">            default: GuideIndex//default代表默认在这个例子中等价于name=&quot;page&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+<h5 id="重定向和别名"><a href="#重定向和别名" class="headerlink" title="重定向和别名"></a>重定向和别名</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">两个地址都可渲染出当下组件</span><br><span class="line">routes: [</span><br><span class="line">    &#123;</span><br><span class="line">        path: &apos;/guide&apos;,</span><br><span class="line">        //别名</span><br><span class="line">        alias: &apos;/&apos;,</span><br><span class="line">        components: &#123;</span><br><span class="line">            nav: GuideNav,</span><br><span class="line">            default: GuideIndex</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    &#123;</span><br><span class="line">    //其他不满足条件的路径</span><br><span class="line">    path: &apos;**&apos;,</span><br><span class="line">    // 重定向</span><br><span class="line">    redirect: &apos;/404&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="路由传参和路由模式"><a href="#路由传参和路由模式" class="headerlink" title="路由传参和路由模式"></a>路由传参和路由模式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//路由的切换模式</span><br><span class="line">mode: &apos;history&apos;,//默认值为hash</span><br><span class="line">routes: [</span><br><span class="line">    &#123;</span><br><span class="line">        path: &apos;/box/:id&apos;,</span><br><span class="line">        name: &apos;box&apos;,</span><br><span class="line">        component: Box,</span><br><span class="line">        //路由传参的三种方式都需要在内部用props接收参数</span><br><span class="line">        //  路由组件传参:布尔模式</span><br><span class="line">        // props: true</span><br><span class="line"></span><br><span class="line">        //  路由组件传参:对象模式,当 props 是静态的时候有用</span><br><span class="line">        // props: &#123;</span><br><span class="line">        //     str: &apos;hello&apos;</span><br><span class="line">        // &#125;,</span><br><span class="line"></span><br><span class="line">        //  路由组件传参:函数模式</span><br><span class="line">        props: ()=&gt;&#123;</span><br><span class="line">            //运算</span><br><span class="line">            return &#123;str: &apos;hello&apos;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    &lt;!--如果使用的是history模式那么打包后再后台运行时需在后台中添加--&gt;</span><br><span class="line">    </span><br><span class="line">    server.get(&apos;*&apos;, (req, res)=&gt;&#123;</span><br><span class="line">            let result = fs.readFileSync(&apos;./www/index.html&apos;);</span><br><span class="line">            res.end(result);</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+<h5 id="动画的实现"><a href="#动画的实现" class="headerlink" title="动画的实现"></a>动画的实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.通过transition实现动画</span><br><span class="line">    默认情况下过度的六个类名</span><br><span class="line">        (进入：v-enter，v-inter-to，v-enter-active)</span><br><span class="line">        (离开：v-leave，v-leave-to，v-leave-active)</span><br><span class="line">    </span><br><span class="line">    添加name来进行自定义</span><br><span class="line">        &lt;!-- mode设置动画执行的模式 in-out(先进入后退出)   out-in（先退出后进入） 默认退出和进入同时进行 --&gt;</span><br><span class="line">        &lt;transition name=&quot;ani1&quot; mode=&quot;out-in&quot;&gt;</span><br><span class="line">        &lt;component :is=&quot;com&quot;/&gt;</span><br><span class="line">        &lt;/transition&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">    2.通过animation实现动画</span><br><span class="line">    </span><br><span class="line">        &lt;!--在v-enter/leave-active上加入自定义的动画或者第三方插件库的动画--&gt;</span><br><span class="line">        &lt;!--在使用第三方插件库的动画时可以自定义class类名--&gt;</span><br><span class="line">        </span><br><span class="line">         enter-class=&quot;&quot; enter-to-class=&quot;&quot; enter-active-class=&quot;&quot;</span><br><span class="line">         leave-class=&quot;&quot; leave-to-class=&quot;&quot; leave-active-class=&quot;&quot;</span><br><span class="line">         appear-class=&quot;&quot; appear-to-class=&quot;&quot; appear-active-class=&quot;&quot;//用于设置初始化动画也就是网页加载时的动画后续不在触</span><br><span class="line">         发，注意需要单独加上appear让vue可以识别这个类名</span><br><span class="line">```    </span><br><span class="line">```        </span><br><span class="line">    3.两者同时使用</span><br><span class="line">            &lt;!-- </span><br><span class="line">        如果transition标签同时有动画和过渡效果，时间分别按照css设置的动画和过渡的时间执行。</span><br><span class="line">        设置duration属性，动画和过渡时间都按照duration的时间执行。</span><br><span class="line">     --&gt;</span><br><span class="line">     &lt;transition :duration=&apos;&#123;enter: 1000,leave: 4000&#125;&apos;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">4. transition-group</span><br><span class="line"></span><br><span class="line">   &lt;!--当你需要给两个或者更多的组件设置相同的动画时--&gt;</span><br><span class="line">   &lt;!--可以使用transition-group将其包裹--&gt;</span><br><span class="line">   </span><br><span class="line">   &lt;ul&gt;</span><br><span class="line">       &lt;transition-group enter-active-class=&quot;slideInUp&quot; leave-active-class=&quot;slideOutUp&quot;&gt;</span><br><span class="line">           &lt;li v-for=&quot;(item, index) in list&quot; :key=&quot;item.id&quot;&gt;</span><br><span class="line">               &#123;&#123;item.val&#125;&#125;</span><br><span class="line">               &lt;button @click=&quot;deleteAction(index)&quot;&gt;X&lt;/button&gt;</span><br><span class="line">           &lt;/li&gt;</span><br><span class="line">       &lt;/transition-group&gt;</span><br><span class="line">   &lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">     5.动画钩子函数</span><br><span class="line">     </span><br><span class="line">        &lt;transition @beforeEnter=&quot;handleBeforeEnter&quot; @enter=&quot;handleEnter&quot; @afterEnter=&quot;handleAfterEnter&quot;&gt;</span><br><span class="line">             &lt;div class=&quot;box&quot; v-if=&quot;isSelect&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;/transition&gt;</span><br><span class="line">        </span><br><span class="line">        handleBeforeEnter(el)&#123;</span><br><span class="line">          console.log(&apos;before enter&apos;);</span><br><span class="line">          el.style.background = &apos;red&apos;;</span><br><span class="line">          el.style.transition = &apos;1s&apos;;</span><br><span class="line">        &#125;,</span><br><span class="line">        </span><br><span class="line">        handleEnter(el, done)&#123;//done进入完成的回调函数</span><br><span class="line">          console.log(&apos;enter&apos;);</span><br><span class="line">    </span><br><span class="line">          setTimeout(()=&gt;&#123;</span><br><span class="line">            el.style.background = &apos;yellow&apos;;</span><br><span class="line">    </span><br><span class="line">            setTimeout(()=&gt;&#123;</span><br><span class="line">              el.style.background = &apos;darkgoldenrod&apos;;</span><br><span class="line">              done();//进入完成</span><br><span class="line">            &#125;, 1000);</span><br><span class="line">    </span><br><span class="line">          &#125;, 1000);</span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line">        handleAfterEnter()&#123;</span><br><span class="line">          console.log(&apos;after enter&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">```        </span><br><span class="line">#####  自定义指令与过滤器</span><br></pre></td></tr></table></figure>
+<pre><code>1. 自定义指令
+    main.js中
+    // 声明全局指令：
+
+    // v-color=&quot;yellow&quot;
+    // 创建自定义指令
+    // 参数1：指令名字
+    // 参数2：指令实现函数
+    Vue.directive(&apos;color&apos;, function(el, binding){
+      // console.log(&apos;color指令调用了&apos;);
+      // console.log(el, binding);
+      el.style.background = binding.value;
+    })
+
+
+    组件内部
+      // 局部指令
+      directives: {
+        size(el ,binding){
+          el.style.fontSize = binding.value + &apos;px&apos;;
+        }
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">        2. 自定义过滤器</span><br><span class="line">            全局过滤器</span><br><span class="line">            // 参数1：过滤器的名字</span><br><span class="line">            // 参数2：过滤器的实现函数</span><br><span class="line">            // 调用过滤器  &#123;&#123;value | 过滤器名字&#125;&#125;    v-bind:prop=&quot;value | 过滤器名字&quot;</span><br><span class="line">            Vue.filter(&apos;price&apos;, (value, ...rest)=&gt;&#123;   </span><br><span class="line">            </span><br><span class="line">              let result = &apos;&apos;;</span><br><span class="line">            </span><br><span class="line">              if(rest[0] === &apos;$&apos;)&#123;</span><br><span class="line">                result = value;</span><br><span class="line">              &#125;</span><br><span class="line">              if(rest[0] === &apos;¥&apos;)&#123;</span><br><span class="line">                result = value * 6.8529;</span><br><span class="line">              &#125;</span><br><span class="line">              if(rest[0] === &apos;€&apos;)&#123;</span><br><span class="line">                result = value * 0.8737;</span><br><span class="line">              &#125;</span><br><span class="line">            </span><br><span class="line">              return rest[0] + result;</span><br><span class="line">              </span><br><span class="line">            &#125;)</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            局部过滤器</span><br><span class="line">            </span><br><span class="line">              filters: &#123;</span><br><span class="line">                color(value)&#123;</span><br><span class="line">                  console.log(value);</span><br><span class="line">                  return &apos;color: #fff; background: #&apos;+value;</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
