@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title> - cykBlog</title>
+    <title>闭包的简要理解与解析 - cykBlog</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate">
@@ -35,7 +35,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" data-url="https://k345670.github.io"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle"></h3>
+    <h3 class="subtitle">闭包的简要理解与解析</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -53,10 +53,12 @@
     <div class="section">
         <div class="article">
     <div class="main">
-        <h1 class="title"></h1>
+        <h1 class="title">闭包的简要理解与解析</h1>
         <div class="stuff">
-            <span>三月 26, 2019</span>
+            <span>三月 15, 2019</span>
             
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/IT技术/">IT技术</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/前端/">前端</a></li></ul>
+
 
         </div>
         <div class="content markdown">
@@ -64,7 +66,7 @@
 <h4 id="很多人对于闭包的解释可能是函数嵌套了函数，然后返回一个函数。其实这个解释是不完整的，就比如我上面这个例子就可以反驳这个观点。"><a href="#很多人对于闭包的解释可能是函数嵌套了函数，然后返回一个函数。其实这个解释是不完整的，就比如我上面这个例子就可以反驳这个观点。" class="headerlink" title="很多人对于闭包的解释可能是函数嵌套了函数，然后返回一个函数。其实这个解释是不完整的，就比如我上面这个例子就可以反驳这个观点。"></a>很多人对于闭包的解释可能是函数嵌套了函数，然后返回一个函数。其实这个解释是不完整的，就比如我上面这个例子就可以反驳这个观点。</h4><h4 id="在-JS-中，闭包存在的意义就是让我们可以间接访问函数内部的变量，下面看一个经典例子"><a href="#在-JS-中，闭包存在的意义就是让我们可以间接访问函数内部的变量，下面看一个经典例子" class="headerlink" title="在 JS 中，闭包存在的意义就是让我们可以间接访问函数内部的变量，下面看一个经典例子"></a>在 JS 中，闭包存在的意义就是让我们可以间接访问函数内部的变量，下面看一个经典例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (var i = 1; i &lt;= 5; i++) &#123;</span><br><span class="line">  setTimeout(function timer() &#123;</span><br><span class="line">    console.log(i)</span><br><span class="line">  &#125;, i * 1000)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="解析：首先因为-setTimeout-是个异步函数，所以会先把循环全部执行完毕，这时候-i-就是-6-了，所以会输出一堆-6。"><a href="#解析：首先因为-setTimeout-是个异步函数，所以会先把循环全部执行完毕，这时候-i-就是-6-了，所以会输出一堆-6。" class="headerlink" title="解析：首先因为 setTimeout 是个异步函数，所以会先把循环全部执行完毕，这时候 i 就是 6 了，所以会输出一堆 6。"></a>解析：首先因为 setTimeout 是个异步函数，所以会先把循环全部执行完毕，这时候 i 就是 6 了，所以会输出一堆 6。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">解决办法一(推荐)</span><br><span class="line">    for(let i = i; i &lt;= 5; i++)&#123;</span><br><span class="line">        setTimeout(function timer()&#123;</span><br><span class="line">            console.log(i)</span><br><span class="line">        &#125;,i*1000)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">解决办法二（利用setTimeout的第三个参数）且这个参数会被当做timer的参数传入</span><br><span class="line">    for(var i = i; i &lt;= 5; i++)&#123;</span><br><span class="line">        setTimeout(function timer(j)&#123;</span><br><span class="line">            console.log(i)</span><br><span class="line">        &#125;,i*1000,i)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">解决办法三</span><br><span class="line">    for(let i = i; i &lt;= 5; i++)&#123;</span><br><span class="line">        (function(j)&#123;</span><br><span class="line">            setTimeout(function timer()&#123;</span><br><span class="line">                console.log(j)</span><br><span class="line">            &#125;i*1000)</span><br><span class="line">        &#125;)(i)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">解决办法三</span><br><span class="line">    for(let i = i; i &lt;= 5; i++)&#123;</span><br><span class="line">        (function(j)&#123;</span><br><span class="line">            setTimeout(function timer()&#123;</span><br><span class="line">                console.log(j)</span><br><span class="line">            &#125;j*1000)</span><br><span class="line">        &#125;)(i)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
