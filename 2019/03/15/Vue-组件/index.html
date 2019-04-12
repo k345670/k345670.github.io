@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vue-组件总结 - cykBlog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="vue组件1. 在实例中可以配置的配置项，在组件中都能够使用。
+2. 除了el在组件中的配置没有之外。
+3. 在组件中必须要有template配置项
+4. 在组件中的data属性需要配置为一个函数
+,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="cykBlog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.jpg"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">cykBlog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="https://k345670.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">Vue-组件总结</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">Vue-组件总结</h1>
+        <div class="stuff">
+            <span>三月 15, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/IT技术/">IT技术</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/前端/">前端</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="vue组件"><a href="#vue组件" class="headerlink" title="vue组件"></a>vue组件</h1><pre><code>1. 在实例中可以配置的配置项，在组件中都能够使用。
+2. 除了el在组件中的配置没有之外。
+3. 在组件中必须要有template配置项
+4. 在组件中的data属性需要配置为一个函数
+5. 函数必须要有返回值，而且是一个对象，对象中的数据就是组件属性
+</code></pre><ol>
+<li><p>全局组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--组件的创建在vue实例构建前声明--&gt;</span><br><span class="line">&lt;!--参数1:组件的名字--&gt;</span><br><span class="line">&lt;!--参数2:组件的内容--&gt;</span><br><span class="line"></span><br><span class="line">Vue.component(&apos;TodoItem&apos;, &#123;</span><br><span class="line">    &lt;!--组件的dom结构--&gt;</span><br><span class="line">    template: &apos; &lt;li&gt;\</span><br><span class="line">                    &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;\</span><br><span class="line">                &lt;/li&gt;&apos;,</span><br><span class="line">    &lt;!--接收外部通过组件标签传入的数据--&gt;</span><br><span class="line">    props: [&apos;val&apos;, &apos;title&apos;]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>局部组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--声明在实例内部--&gt;</span><br><span class="line">components: &#123;</span><br><span class="line">    &apos;TodoItem&apos;: &#123;</span><br><span class="line">        &lt;!--组件的dom结构--&gt;</span><br><span class="line">        template: &apos; &lt;li&gt;\</span><br><span class="line">                        &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;\</span><br><span class="line">                    &lt;/li&gt;&apos;,</span><br><span class="line">        &lt;!--接收外部通过组件标签传入的数据--&gt;</span><br><span class="line">        props: [&apos;val&apos;, &apos;title&apos;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="脚手架工具构建项目和单文件组件"><a href="#脚手架工具构建项目和单文件组件" class="headerlink" title="脚手架工具构建项目和单文件组件"></a>脚手架工具构建项目和单文件组件</h3><h5 id="1-流程"><a href="#1-流程" class="headerlink" title="1. 流程"></a>1. 流程</h5><ul>
+<li>vue create 项目名字<h5 id="2-基本结构"><a href="#2-基本结构" class="headerlink" title="2. 基本结构"></a>2. 基本结构</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    装载组件的dom结构</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    组件的逻辑部分</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    组件的样式</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="组件之间的传值"><a href="#组件之间的传值" class="headerlink" title="组件之间的传值"></a>组件之间的传值</h4><h5 id="1-父子组件间的传值"><a href="#1-父子组件间的传值" class="headerlink" title="1. 父子组件间的传值"></a>1. 父子组件间的传值</h5><pre><code>1. 父组件给子组件传值
+
+   在父组件调用子组件时，给子组件绑定自定义的属性。
+
+   &lt;List :city=&quot;selectCity&quot;/&gt;
+
+   在子组件中使用props进行接收。在子组件中当成属性使用。
+
+   props: [&apos;city&apos;]
+
+   props属于外部属性，只可以读取，不可以设置(单向数据流)
+   props在接受外部属性时，可以设置为数组形式，也可以设置为对象的形式。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">props: &#123;</span><br><span class="line">    // 属性校验</span><br><span class="line">    // key: String/Number/Array/Object</span><br><span class="line">    city: &#123;</span><br><span class="line">        type: String,//属性类型</span><br><span class="line">        required: true,//属性是否必须传递</span><br><span class="line">    &#125;,</span><br><span class="line">    title: &#123;</span><br><span class="line">        type: [Array, String],</span><br><span class="line">        default: &apos;vue&apos;//设置默认值</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+<pre><code>2. 子组件给父组件传值
+
+    方式1：(建议使用以方便区分传值的方向)
+    在父组件调用子组件时，给子组件绑定自定义事件。
+      &lt;Add @add=&quot;handleAddAction&quot;/&gt;
+    在子组件内部，需要给父组件传值时，触发该自定义事件。
+      this.$emit(&apos;add&apos;, this.text);
+
+    方式2：
+    在父组件调用子组件时，给子组件绑定自定义的属性，但是自定义属性值是函数。
+      &lt;Add :add=&quot;handleAddAction&quot;/&gt;
+    在子组件内部，使用props接收属性，需要给父组件传值时，调用属性对应的函数，进行传值。
+        props: {
+            add: Function
+        },
+      this.add(this.text);
+</code></pre><h5 id="2-非父子之间的传递"><a href="#2-非父子之间的传递" class="headerlink" title="2. 非父子之间的传递"></a>2. 非父子之间的传递</h5><pre><code>1. 原理（属于发布订阅的设计模式：
+    特点1. 多对多，2. 需要先监听后触发）
+    建立一个空的vue实例当做中间件使组件都可以访问到这个中间件（Vue.prototype.$center = new Vue();
+
+2. 添加自定义事件的监听    
+    .$on(&apos;需要监听的自定义事件的名字&apos;，&apos;监听事件的回调函数&apos;)
+
+3. 触发事件
+    .$emit(&apos;触发的事件名字&apos;,&apos;触发时传的数据&apos;)
+
+4. 移除监听
+    .$off(&apos;需要移除的监听事件&apos;)
+</code></pre><h5 id="3-动态组件"><a href="#3-动态组件" class="headerlink" title="3. 动态组件"></a>3. 动态组件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- </span><br><span class="line">    在keep-alive标签内部，发现组件将要销毁，</span><br><span class="line"></span><br><span class="line">    keep-alive阻止组件销毁，将组件缓存起来，在下一次调用时直接使用缓存。</span><br><span class="line"> --&gt;</span><br><span class="line">&lt;!-- 动态组件, is的值是组件的标签名字 --&gt;</span><br><span class="line">&lt;keep-alive&gt;</span><br><span class="line">    &lt;component :is=&quot;comName&quot;/&gt;</span><br><span class="line">&lt;/keep-alive&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="4-异步组件"><a href="#4-异步组件" class="headerlink" title="4. 异步组件"></a>4. 异步组件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">components: &#123;</span><br><span class="line">    //异步组件</span><br><span class="line">    OneCom: function()&#123;</span><br><span class="line">        return import(&apos;./components/One&apos;)</span><br><span class="line">    &#125;,</span><br><span class="line">    TwoCom: ()=&gt;import(&apos;./components/Two&apos;),</span><br><span class="line">    ThreeCom: ()=&gt;import(&apos;./components/Three&apos;)</span><br><span class="line">&#125;,</span><br><span class="line">errorCaptured()&#123;</span><br><span class="line">    //只能捕获子组件的异常，自身组件发生异常，需要父组件捕获</span><br><span class="line">    console.log(&apos;1捕获异常&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;style scoped&gt;让样式只在自身组件内生效
+</code></pre><h5 id="5-slot插槽的使用"><a href="#5-slot插槽的使用" class="headerlink" title="5. slot插槽的使用"></a>5. slot插槽的使用</h5><pre><code>当外部组件需要向内部组件插入某些数据或者另外的一个组件时就需要使用slot组件
+
+一个slot组件会将所有的插入数据插入到slot组件创建的地方
+
+如果需要制定插入特定的数据就需要给slot一个name属性，并在外部用name来向指定的插槽插入数据
+
+&lt;!--利用slot来进行组件间的传值--&gt;
+
+ &lt;!--通过this.$slots能访问到通过slot接收的调用的标签中的结构--&gt;
+ &lt;!--$slots中装载的对象是VNode对象，VNode对象vue项目中的虚拟dom节点。--&gt;
+</code></pre><h5 id="6-ref的使用"><a href="#6-ref的使用" class="headerlink" title="6. ref的使用"></a>6. ref的使用</h5><pre><code>ref 给组件中的标签设置的属性
+设置属性需要在组件的dom结构中是唯一的
+在组件的js实现中，可以通过this.$refs访问到对应的组件或dom结构
+
+ref给普通标签设置得到的是dom元素
+给组件标签设置得到的是组件对象
+
+ref设置在了v-for指令作用的标签上，通过this.$refs得到就是一个数组，数组中是遍历出来的所有对象
+</code></pre>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
